@@ -100,6 +100,25 @@ echo "Postgres user"
 sudo -u postgres createuser $(whoami) -s
 
 echo -e $line
+echo -e "\nInstalling Snapd\n"
+sudo apt install snapd
+
+echo -e $line
+echo -e "\nInstalling VLC\n"
+sudo apt-get install vlc
+
+echo -e $line
+echo -e "\nInstalling Insomnia REST\n"
+sudo snap install insomnia
+
+echo -e $line
+echo -e "\nDownloading Studio 3T\n"
+wget -P ~/Downloads/ "https://download.studio3t.com/studio-3t/linux/2020.3.1/studio-3t-linux-x64.tar.gz"
+tar -xvzf studio-3t-linux-x64.tar.gz
+sh ./studio-3t-linux-x64.sh
+
+
+echo -e $line
 echo -e "\nConfiguring git\n"
 git config --global color.ui true
 git config --global user.name "$username"
