@@ -10,6 +10,12 @@ Do the following steps from your node project directory:
 yarn add -D eslint
 ```
 
+- Create `.eslintrc` by running:
+
+```bash
+./node_modules/.bin/eslint --init
+```
+
 You will prompt with some questions. Answer them as follow:
 
 01: _How would you like to use ESLint? (Use arrow keys)_
@@ -56,12 +62,6 @@ From now on you have your ESLint configuration file created (`.eslintrc`).
 
 ```bash
 yarn add -D prettier eslint-config-prettier eslint-plugin-prettier@latest --save-dev
-```
-
-- Create `.eslintrc` by running:
-
-```bash
-./node_modules/.bin/eslint --init
 ```
 
 - Configure the `.eslintrc` file located in the root directory of the project as
