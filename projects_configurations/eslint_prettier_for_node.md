@@ -55,7 +55,7 @@ From now on you have your ESLint configuration file created (`.eslintrc`).
 - To install prettier and other packeges (needed to make eslint to work correctly with prettier) run:
 
 ```bash
-yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
+yarn add -D prettier eslint-config-prettier eslint-plugin-prettier@latest --save-dev
 ```
 
 - Create `.eslintrc` by running:
@@ -105,5 +105,45 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 ```JSON
 {
   "editor.formatOnSave": true,
+}
+```
+
+### Install husky to check linter on pre-commits
+
+```bash
+yarn add -D husky@latest --save
+```
+
+Paste this to the `package.json`:
+
+```JSON
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "pretty-quick --staged",
+      "git add"
+    ],
+    "*.js": [
+      "eslint",
+      "git add",
+      "jest --bail --findRelatedTests"
+    ]
+  }
+```
+
+Add this to `scripts`:
+
+```JSON
+{
+  "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "precommit": "lint-staged"
+  }
 }
 ```
