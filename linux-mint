@@ -122,6 +122,17 @@ echo -e $line
 echo -e "\Installing Spotify\n"
 snap install spotify
 
+# TODO
+########################################################################
+
+
+
+
+
+
+
+########################################################################
+
 echo -e $line
 echo -e "\nConfiguring git\n"
 git config --global color.ui true

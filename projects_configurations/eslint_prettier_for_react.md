@@ -1,6 +1,4 @@
-This article will help you install and configure `prettier` and `eslint` correctly for NodeJS projects. The configurations will be set to follow the common programming good practices and code styles, for example the `Airbnb`.
-
-Some steps here were taken from [this article](https://dev.to/collabcode/como-configurar-eslint-e-prettier-no-node-3kga).
+This article will help you install and configure `prettier` and `eslint` correctly for React projects. The configurations will be set to follow the common programming good practices and code styles (`Airbnb`).
 
 Do the following steps from your node project directory:
 
@@ -28,7 +26,7 @@ You will be prompted with some questions. Answer them as follow:
 
 03: _Which framework does your project use?_
 
-- Answer: _`React`_
+- Answer: _`None of these`_
 
 04: _Does your project use TypeScript?_
 
@@ -36,7 +34,7 @@ You will be prompted with some questions. Answer them as follow:
 
 05: _Where does your code run?_
 
-- Answer: Select `Browser` option.
+- Answer: Press `i` to invert selection and let only the `Node` option selected.
 
 06: _How would you like to define a style for your project?_
 
@@ -52,14 +50,7 @@ You will be prompted with some questions. Answer them as follow:
 
 09: _Would you like to install them now with npm?_
 
-- Answer: _`N`_
-
-Install the following packages:
-
-```BASH
-$ yarn add -D eslint-plugin-react@^7.20.0 eslint-config-airbnb@latest eslint-plugin-import@^2.21.2 eslint-plugin-jsx-a11y@^6.3.0 eslint-plugin-react-hooks@^4 || ^3 || ^2.3.0 || ^1.7.0
-```
-
+- Answer: _`Y`_
 
 From now on you have your ESLint configuration file created (`.eslintrc`).
 
@@ -67,32 +58,22 @@ From now on you have your ESLint configuration file created (`.eslintrc`).
 
 ```JSON
 {
-  "env": { "browser": true, "es6": true },
-  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
-  "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
   "parserOptions": {
-    "ecmaFeatures": { "jsx": true },
-    "ecmaVersion": 11,
+    "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "react-hooks"],
   "rules": {
-    "prettier/prettier": "error",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-props-no-spreading": "off",
-    "no-underscore-dangle": "off",
-    "import/no-named-as-default": "off",
-    "import/no-named-as-default-member": "off",
-    "import/prefer-default-export": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
-    "react/no-array-index-key": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
-  },
-  "settings": {
-    "import/resolver": {
-      "node": { "moduleDirectory": ["node_modules", "src/"] }
-    }
+    "prettier/prettier": "error"
   }
 }
 ```
