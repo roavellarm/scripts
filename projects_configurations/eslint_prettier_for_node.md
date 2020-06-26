@@ -4,16 +4,16 @@ Some steps here were taken from [this article](https://dev.to/collabcode/como-co
 
 Do the following steps from your node project directory:
 
-### 1) Install `eslint` in devDependencies
+### 1) Install `eslint`, `prettier` and other packeges (needed to make eslint to work correctly with prettier) in devDependencies.
 
 ```bash
-yarn add -D eslint
+$ yarn add -D eslint prettier eslint-config-prettier eslint-plugin-prettier --save
 ```
 
 - Create `.eslintrc` by running:
 
 ```bash
-./node_modules/.bin/eslint --init
+$ ./node_modules/.bin/eslint --init
 ```
 
 You will prompt with some questions. Answer them as follow:
@@ -56,16 +56,7 @@ You will prompt with some questions. Answer them as follow:
 
 From now on you have your ESLint configuration file created (`.eslintrc`).
 
-### 2) Install prettier and set configurations files
-
-- To install prettier and other packeges (needed to make eslint to work correctly with prettier) run:
-
-```bash
-yarn add -D prettier eslint-config-prettier eslint-plugin-prettier@latest --save-dev
-```
-
-- Configure the `.eslintrc` file located in the root directory of the project as
-  follow:
+### 2) Configure the `.eslintrc` file located in the root directory of the project as follow:
 
 ```JSON
 {
@@ -100,6 +91,17 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier@latest --save
 }
 ```
 
+- Add the lint execution command to `scripts` in `package.json` file:
+
+```JSON
+{
+  "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+  }
+}
+```
+
+
 - Make sure you vscode json settings file has the format on save on, like this:
 
 ```JSON
@@ -107,6 +109,8 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier@latest --save
   "editor.formatOnSave": true,
 }
 ```
+
+## OPTIONAL
 
 ### Install husky to check linter on pre-commits
 
@@ -137,12 +141,11 @@ Paste this to the `package.json`:
   }
 ```
 
-Add this to `scripts`:
+- Add precommit command to `scripts` in `package.json` file:
 
 ```JSON
 {
   "scripts": {
-    "lint": "eslint --ext .js --ignore-path .gitignore .",
     "precommit": "lint-staged"
   }
 }
