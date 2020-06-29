@@ -87,6 +87,7 @@ From now on you have your ESLint configuration file created (`.eslintrc`).
 
 ```JSON
 {
+  "arrowParens": "avoid",
   "tabWidth": 2,
   "singleQuote": true,
   "semi": false,
